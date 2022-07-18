@@ -574,10 +574,10 @@ exports._mergeWithDefaults = function (options) {
         }
     }
 
-    options.meta = {
-        plugin:  'cordova-plugin-local-notification',
-        version: '0.9-beta.3'
-    };
+    // options.meta = {
+    //     plugin:  'cordova-plugin-local-notification',
+    //     version: '0.9-beta.3'
+    // };
 
     return options;
 };
