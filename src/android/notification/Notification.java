@@ -30,29 +30,23 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.service.notification.StatusBarNotification;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.util.ArraySet;
-import android.support.v4.util.Pair;
+import androidx.collection.ArraySet;
+import androidx.core.app.NotificationCompat;
+import androidx.core.util.Pair;
 import android.util.Log;
 import android.util.SparseArray;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static android.app.AlarmManager.RTC;
 import static android.app.AlarmManager.RTC_WAKEUP;
 import static android.app.PendingIntent.FLAG_CANCEL_CURRENT;
 import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.M;
-import static android.support.v4.app.NotificationCompat.PRIORITY_HIGH;
-import static android.support.v4.app.NotificationCompat.PRIORITY_MAX;
-import static android.support.v4.app.NotificationCompat.PRIORITY_MIN;
+import static androidx.core.app.NotificationManagerCompat.IMPORTANCE_MAX;
+import static androidx.core.app.NotificationManagerCompat.IMPORTANCE_MIN;
 
 /**
  * Wrapper class around OS notification class. Handles basic operations
@@ -222,10 +216,10 @@ public final class Notification {
 
             try {
                 switch (options.getPrio()) {
-                    case PRIORITY_MIN:
+                    case IMPORTANCE_MIN:
                         mgr.setExact(RTC, time, pi);
                         break;
-                    case PRIORITY_MAX:
+                    case IMPORTANCE_MAX:
                         if (SDK_INT >= M) {
                             mgr.setExactAndAllowWhileIdle(RTC_WAKEUP, time, pi);
                         } else {
